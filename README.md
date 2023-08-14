@@ -15,6 +15,5 @@
 <code>
 from SimpleNeuro import Neural
 import numpy as np
-
 agent = Neural(10, 256, 10)
 </code>
