@@ -25,3 +25,41 @@ agent = Neural(10, 256, 10)
 epochs = 50
 succes = 0
 </code>
+Затем создаём цикл с количеством указанных эпох и цикл для сбора статистики
+<code>
+for epoch in range(epochs):
+    for i in range(10000):
+</code>
+Теперь генерируем входные данные. Напоминую, что размер матрицы с входными данными должен совпадать с количеством входных нейронов
+<code>
+numbers = np.random.choice(np.arange(10), size=10, replace=False)
+input_data = np.reshape(numbers, (10, 1))
+input_data = input_data.astype(float)/10
+</code>
+
+Далее создаём выходные данные.
+
+<code>
+output_data = np.zeros((10, 1))
+max_index = np.argmax(input_data)
+output_data[max_index] = 1
+output_data = output_data.astype(float)
+</code>
+
+Теперь нужно обучить нейросеть с определённым шагом. Я выберу 0.0001. Чем меньше шаг тем медленнее будет обучаться нейросеть, но тем точнее она будет. Наг не может равняться 0.
+<code>
+result_agent = agent.training(learning_rate=0.0001, input_data=input_data, output_data=output_data)
+</code>
+Сейчас нужно собрать статстику об успешности нейросети. Если выходные данные совпадают с данными, которые дала нейросеть то добавляем в счётчик +1 единицу
+<code>
+ succes += int(np.argmax(output_data) == np.argmax(result_agent))
+</code>
+
+После каждого завершения цикла <code>for i in range(10000):</code> мы будем выводить номер эпохи, процент успешности нейросети и будем обнулять счётчик
+<code>
+print(f'Epoch {epoch}')
+print(f'Succes {float(succes)/1000}%')
+succes = 0
+</code>
+
+А когда закончится и другой цикл мы просто сохраним веса нейросети в файл <file>model.npz</file>
