@@ -1,3 +1,6 @@
+'''
+Задача нейросеть находить в массиве наибольший элемент
+'''
 # Загружаем библиотеки
 from SimpleNeuro import Neural
 import numpy as np
