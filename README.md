@@ -38,7 +38,6 @@ input_data = input_data.astype(float)/10
 </code>
 
 Далее создаём выходные данные.
-
 <code>
 output_data = np.zeros((10, 1))
 max_index = np.argmax(input_data)
