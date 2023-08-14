@@ -50,3 +50,4 @@ class Neural:
         self.weights_hidden_to_output = data['weights_hidden_to_output']
         self.bias_input_to_hidden = data['bias_input_to_hidden']
         self.bias_hidden_to_output = data['bias_hidden_to_output']
+
